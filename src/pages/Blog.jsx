@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from "../components/Footer"
+import BlogCard from '../components/BlogCard'
 
 export default function page() {
   return (
@@ -16,32 +16,38 @@ export default function page() {
                     <button className='cursor-pointer font-semibold text-blue-800 text-sm'>View All</button>
                 </div>
                 <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-10 my-10'> 
-                <Card 
+                    <BlogCard 
+                        id={1}
                         bgColor="bg-cyan-600"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
                     />
-                    <Card 
+                    <BlogCard
+                        id={2}
                         bgColor="bg-blue-600"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
                     />
-                    <Card 
+                    <BlogCard 
+                        id={3}
                         bgColor="bg-red-400"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
                     />
-                    <Card 
+                    <BlogCard 
+                        id={4}
                         bgColor="bg-green-700"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
                     />
-                    <Card 
+                    <BlogCard 
+                        id={5}
                         bgColor="bg-orange-800"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
                     />
-                    <Card 
+                    <BlogCard 
+                        id={6}
                         bgColor="bg-black"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
@@ -53,33 +59,39 @@ export default function page() {
                     <div className='font-semibold text-gray-500 text-2xl'>Articles</div>
                     <button className='cursor-pointer font-semibold text-blue-800 text-sm'>View All</button>
                 </div>
-                <div className='grid grid-cols-3 gap-10 my-10'> 
-                <Card 
+                <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-10 my-10'> 
+                    <BlogCard 
+                        id={7}
                         bgColor="bg-gray-600"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
                     />
-                    <Card 
+                    <BlogCard 
+                        id={8}
                         bgColor="bg-green-800"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
                     />
-                    <Card 
+                    <BlogCard 
+                        id={9}
                         bgColor="bg-cyan-900"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
                     />
-                    <Card 
+                    <BlogCard 
+                        id={10}
                         bgColor="bg-yellow-900"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
                     />
-                    <Card 
+                    <BlogCard 
+                        id={11}
                         bgColor="bg-yellow-600"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
                     />
-                    <Card 
+                    <BlogCard 
+                        id={12}
                         bgColor="bg-blue-400"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
@@ -91,18 +103,21 @@ export default function page() {
                     <div className='font-semibold text-gray-500 text-2xl'>Dev</div>
                     <button className='cursor-pointer font-semibold text-blue-800 text-sm'>View All</button>
                 </div>
-                <div className='grid grid-cols-3 gap-10 my-10'> 
-                    <Card 
+                <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-10 my-10'> 
+                    <BlogCard 
+                        id={13}
                         bgColor="bg-gray-800"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
                     />
-                    <Card 
+                    <BlogCard 
+                        id={14}
                         bgColor="bg-cyan-600"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
                     />
-                    <Card 
+                    <BlogCard 
+                        id={15}
                         bgColor="bg-pink-600"
                         title="MCP Servers: The New AI Ecosystem"
                         author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
@@ -114,21 +129,4 @@ export default function page() {
     <Footer />
     </>
   )
-}
-
-
-
-const Card = ({bgColor="bg-cyan-600",title="MCP Servers: The New AI Ecosystem",author={name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}})=>{
-    return (
-        <Link  to={"#"} className='max-w-[400px] shadow-[0px_0px_30px_rgba(0,0,0,0.2)] mx-auto'>
-            <div className={`h-[250px] p-10 text-white flex justify-center items-center text-3xl font-semibold ${bgColor}`}>{title}</div>
-            <div className='flex gap-5 p-5 items-center'>
-                <div><img src={author.profileImg} alt={author?.name} className='h-16 w-16' /></div>
-                <div className=''>
-                    <div className='font-semibold'>{author?.name}</div>
-                    <div className='text-gray-700 text-sm'>{author?.postedAt}</div>
-                </div>
-            </div>
-        </Link>
-    )
 }
