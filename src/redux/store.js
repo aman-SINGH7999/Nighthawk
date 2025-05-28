@@ -6,7 +6,7 @@ import userReducer from '../redux/userSlice';
 
 // Combine all reducers if needed
 const rootReducer = combineReducers({
-  counter: userReducer,
+  user: userReducer,
 });
 
 // Configure Redux Persist

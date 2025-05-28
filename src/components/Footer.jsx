@@ -61,7 +61,7 @@ export default function Footer() {
         </div>
         <div className='flex flex-col text-center items-center sm:text-start sm:items-start sm:flex-row text-[13px] px-5 md:px-10 lg:px-20 py-10 gap-10 bg-blue-950 text-white'>
             <div className='w-1/5 flex justify-center'>
-                <img src="/logo-icon-1.ico" alt="logo" className='w-15 h-15'/>
+                <img src="/icon-logo.png" alt="logo" className='w-10 h-10'/>
             </div>
             <div className='w-3/4 flex flex-col gap-2'>
                 <div className='flex flex-wrap gap-4 justify-center sm:justify-start'>

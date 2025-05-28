@@ -1,13 +1,43 @@
 import { Link } from 'react-router-dom'
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from "../components/Footer"
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import { useDispatch } from 'react-redux'
+import { login } from '../redux/userSlice';
 
-export default function page() {
+export default function Login() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [remember, setRemember] = useState("");
+    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+
+    const handleLogin = async (e)=>{
+        e.preventDefault();
+
+        try{
+            setLoading(true);
+
+            const { data } = await axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/login`,{email, password});
+            // console.log("data: ", data);
+            dispatch(login(data));
+            toast.success("User Login Successfully!");
+            setEmail(""); setPassword("");
+        }catch(err){
+            // console.log("ERROR : ",err);
+            const errorMessage = err.response?.data?.message || "Login failed!";
+            toast.error(errorMessage);
+        }finally {
+            setLoading(false); // 👈 Kaam ho gaya, ab loading false
+        }
+    }
+
   return (
     <>
     <Navbar />
-    <div className='flex flex-col md:flex-row gap-5 px-10 mt-10 md:mt-0 lg:px-20 h-[80vh]'>
+    <div className='flex flex-col md:flex-row gap-5 px-10 mt-10 md:mt-0 lg:px-20 min-h-[80vh]'>
         <div className='hidden md:w-1/2 md:flex flex-col justify-center gap-5 items-center text-center relative'>
         <img src="/signup.jpg" alt="login-img" className='w-full h-full object-cover absolute -z-10 opacity-52' />
             <div className='text-4xl font-bold p-2'>Welcome to ORIGINAL</div>
@@ -15,20 +45,20 @@ export default function page() {
         </div>
         <div className='md:w-1/2 flex flex-col justify-center items-center'>
             <img src="/logo3.png" alt="logo" className='w-1/2 mb-10' />
-            <form action="" className='flex flex-col gap-5 justify-center items-start border-[1px] shadow-[0px_0px_100px_rgba(0,0,0,0.1)] border-gray-400 p-5 w-[350px] rounded-sm'>
+            <form action="" onSubmit={handleLogin} className='flex flex-col gap-5 justify-center items-start border-[1px] shadow-[0px_0px_100px_rgba(0,0,0,0.1)] border-gray-400 p-5 w-[350px] rounded-sm'>
                 <div className='w-full flex flex-col gap-1'>
-                    <label htmlFor="username" className='text-gray-500 text-sm'>Username</label>
-                    <input type="text" id='username' className='border-[1px] border-gray-400 rounded-sm p-2' />
+                    <label htmlFor="email" className='text-gray-500 text-sm'>Email</label>
+                    <input type="email" id='email' className='border-[1px] border-gray-400 rounded-sm p-2' value={email} onChange={(e)=>setEmail(e.target.value)} required/>
                 </div>
                 <div className='w-full flex flex-col gap-1'>
                     <label htmlFor="password" className='text-gray-500 text-sm'>Password</label>
-                    <input type="password" id='password' className='border-[1px] border-gray-400 rounded-sm p-2' />
+                    <input type="password" id='password' className='border-[1px] border-gray-400 rounded-sm p-2' value={password} onChange={(e)=>setPassword(e.target.value)} required/>
                 </div>
                 <div className='w-full flex gap-1'>
-                    <input type="checkbox" />
+                    <input type="checkbox" value={remember} onChange={(e)=>setRemember(e.target.value)}/>
                     <label htmlFor="checkbox" id='checkbox' className='text-gray-500 text-sm'>Remember me</label>
                 </div>
-                <button className='bg-blue-700 w-full rounded-sm text-white p-2 hover:bg-blue-800'>Log In</button>
+                <button type='submit' disabled={loading} className={`w-full rounded-sm text-white p-2 ${loading ? "bg-blue-400 hover:bg-blue-400" : "bg-blue-700 hover:bg-blue-800"}`} >{loading ? "Logging in..." : "Login"}</button>
                 <div className='flex justify-between items-center w-full text-sm text-blue-700'>
                     <Link to={"#"}>Forgot Password?</Link>
                     <Link to={"/signup"}>Create Account</Link>

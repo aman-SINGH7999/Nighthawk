@@ -1,11 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import BlogCard from '../components/BlogCard'
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer'
+import axios from 'axios'
 
 export default function SingleBlog() {
+    const [blog, setBlog] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [comment, setComment] = useState("");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState(""); 
+
     const { id } = useParams();
+
+      const getBlogDetail = async ()=>{
+    try{
+      const { data } = await axios.get(`${process.env.REACT_APP_SERVER_URL}/contents/blog/${id}`);
+      console.log(data)
+      setBlog(data?.blog);
+    }catch(err){
+      console.log(err);
+    }finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(()=>{
+    getBlogDetail();
+  }, [])
+
+
   return (
     <>
     <Navbar />
@@ -13,36 +38,65 @@ export default function SingleBlog() {
     <div className='w-11/12 sm:w-3/4 lg:w-8/12 xl:w-1/2 mx-auto'>
 
         {/* about the blog */}
-        <div className=''>
-            <h1 className='text-4xl font-semibold mt-10'>Heading of my blog {id}</h1>
-            <div className='text-gray-600'>Updated 11 April 2025</div>
-            <div className='my-10'>
-                <img src="/woman2.jpg" alt="imgBlog" />
-                <div className='text-xs'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, quidem.</div>
-            </div>
-            <h3 className='text-lg font-semibold'>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</h3>
-            <p>
-                <span className='text-3xl'>L</span>orem ipsum, dolor sit amet consectetur adipisicing elit. Vero nobis quam accusamus cumque unde delectus amet iste atque pariatur, doloremque nam culpa! Tempore quia aperiam, veritatis et aut tenetur necessitatibus ipsam laboriosam. Nesciunt nostrum magni ab illo eaque laboriosam rem. Quas, dolorem totam maxime facilis alias ipsa quis ea ipsum neque deleniti, reiciendis quam exercitationem architecto repellat officia! Alias dolore ea voluptatum iure quos quasi quis culpa odit sapiente expedita! Quasi qui aliquam numquam assumenda illum? Exercitationem tempore consequuntur atque natus deleniti at culpa tempora id quas eius impedit nemo perspiciatis ducimus, repudiandae quia asperiores! Omnis sunt rem minus aliquid!
-            </p>
-            <h4 className='font-semibold mt-5'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi, aspernatur?</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ipsa dicta praesentium cumque consequuntur magni sit officia dolorem natus tempore! Eum voluptatibus quae eos vitae ad nobis vel numquam odit ipsum, exercitationem totam harum reiciendis delectus ut laborum tenetur. Eveniet.</p>
-        </div>
-
-        {/* Posted by */}
-        <div className='py-5 text-xl'>
-        <div className='text-gray-600 border-b border-dashed w-1/3'>Created by -</div>
-            <div className='flex gap-5 py-3'>
-                <img src="/icon-logo.png" alt="" className='w-10 h-10' />
-                <div>
-                    <div className='font-semibold'>Creater Name</div>
-                    <div className='text-xs text-gray-500'>11 Apr, 2025</div>
+        {loading ? (
+        <p className="text-center text-gray-500">Loading blogs...</p>
+        ) : !blog ? (
+          <p className="text-center text-gray-500">No Detail found.</p>
+        ) : (
+          <main className="">
+            {/* about the blog */}
+            <div className=''>
+                <h1 className='text-4xl font-semibold mt-10'>{blog?.title}</h1>
+                <div className='text-gray-600'>Updated {new Date(blog?.updatedAt)?.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}</div>
+               
+                <div className='my-10'>
+                    <img src={blog?.imageURL} alt="imgBlog" />
+                </div>
+                 <div className='flex my-5'>
+                  {
+                    blog?.tags?.map((tag,i)=>{
+                      return <span key={i} className='py-1 px-3 bg-gray-300 rounded-2xl'>{tag}</span>
+                    })
+                  }
+                </div>
+                <div className='font-semibold text-gray-800 text-xl my-5'>{blog?.description}</div>
+                
+                <div className='flex flex-col gap-4 mb-5'>
+                  {
+                    blog?.content?.map((value, i)=>{
+                      return <div key={i}>{value}</div>
+                    })
+                  }
                 </div>
             </div>
-        </div>
-        
+
+            {/* Posted by */}
+            <div className='py-5 text-xl'>
+            <div className='text-gray-600 border-b border-dashed w-1/3'>Created by -</div>
+                <div className='flex gap-5 py-3'>
+                    <img src="/user-icon.jpeg" alt="" className='w-10 h-10' />
+                    <div>
+                        <div className='font-semibold'>{blog?.author?.username}</div>
+                        <div className='text-xs text-gray-500'>
+                          {new Date(blog?.createdAt)?.toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          })}
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </main>
+      )}
+
 
         {/* Related bloge section */}
-        <div>
+        {/* <div>
             <h2 className='text-3xl text-gray-500 border-b border-gray-300 mt-20 mb-10'>Related Articles</h2>
             <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-10 my-10'>
                 <BlogCard 
@@ -64,7 +118,7 @@ export default function SingleBlog() {
                     author={{name:"Travish Tulla", profileImg:"/user-circle.webp",postedAt:"21 March 2025"}}
                 />
             </div>
-        </div>
+        </div> */}
 
 
 
@@ -77,15 +131,15 @@ export default function SingleBlog() {
                 <form action="" className='flex flex-col gap-5 my-5 text-gray-600' >
                     <div>
                         <label htmlFor="comment">Comment*</label>
-                        <textarea name="comment" id="comment" rows={3} className='w-full border border-gray-300 rounded-sm p-2'></textarea>
+                        <textarea name="comment" id="comment" rows={3} className='w-full border border-gray-300 rounded-sm p-2' value={comment} onChange={(e)=>setComment(e.target.value)}></textarea>
                     </div>
                     <div>
                         <label htmlFor="name">Name*</label>
-                        <input type="text" id='name' className='w-full border border-gray-300 rounded-sm p-2' />
+                        <input type="text" id='name' className='w-full border border-gray-300 rounded-sm p-2' value={name} onChange={(e)=>setName(e.target.value)}/>
                     </div>
                     <div>
                         <label htmlFor="email">Email*</label>
-                        <input type="email" id='email' className='w-full border border-gray-300 rounded-sm p-2' />
+                        <input type="email" id='email' className='w-full border border-gray-300 rounded-sm p-2' value={email} onChange={(e)=>setEmail(e.target.value)}/>
                     </div>
 
                     <div>
