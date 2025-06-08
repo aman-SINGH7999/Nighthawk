@@ -11,6 +11,8 @@ import Careers from './pages/Careers';
 import CareerForm from './pages/CareerForm';
 import Services from './pages/Services';
 import ScrollToTop from './components/ScrollToTop';
+import TechnologyPage from './pages/TechnologyPage';
+import Products from './pages/Products';
 
 
 
@@ -23,9 +25,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<Home />} />
-        <Route path='/products' element={<Home />} />
+        <Route path='/products' element={<Products />} />
         <Route path='/services' element={<Services />} />
-        <Route path='/technologies' element={<Home />} />
+        <Route path='/technologies' element={<TechnologyPage />} />
         <Route path='/open-source' element={<Home />} />
         <Route path='/customers' element={<Home />} />
         <Route path='/blog' element={<Blog />} />

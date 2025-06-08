@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const technologies = [
   {
@@ -39,9 +40,9 @@ export default function Technologies() {
                 ))}
             </div>
             <div className="flex justify-center mt-12">
-                <button className="bg-white border-[1px] border-indigo-600 text-indigo-600 font-semibold px-8 py-3 rounded-full shadow-md hover:bg-indigo-50 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-300">
+                <Link to={'/technologies'} className="bg-white border-[1px] border-indigo-600 text-indigo-600 font-semibold px-8 py-3 rounded-full shadow-md hover:bg-indigo-50 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-300">
                     View All Technologies
-                </button>
+                </Link>
             </div>
         </div>
         <img
