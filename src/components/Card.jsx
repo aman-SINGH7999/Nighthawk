@@ -7,8 +7,12 @@ export default function Card({img, title,text, btn_text1, btn_text2}) {
             <div className='font-semibold text-4xl lg:text-[32px] text-blue-950 lg:mb-20'>{title ? title : null}</div>
             <div className='my-4'>{text ? text : null}</div>
             <div className='flex flex-col sm:flex-row gap-4 flex-wrap mt-5 justify-center md:justify-start w-full'>
-              <button className='cursor-pointer px-8 sm:w-[200px] py-3 bg-blue-700 text-white rounded-md hover:bg-blue-900'>{btn_text1 ? btn_text1 : null}</button>
-              <button className='cursor-pointer px-8 sm:w-[200px] py-3 bg-white border-2  border-blue-700 rounded-md text-blue-700 hover:bg-blue-100 hover:text-blue-900 hover:border-blue-900'>{btn_text2 ? btn_text2 : null}</button>
+              <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition-transform transform hover:scale-105">
+                {btn_text1}
+              </button>
+              <button className="bg-white border-2 border-indigo-600 text-indigo-600 font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-indigo-50 transition-transform transform hover:scale-105">
+                {btn_text2}
+              </button>
             </div>
         </div>
         <div className='w-full md:w-1/2 flex justify-center items-center'>
