@@ -21,7 +21,7 @@ const productsData = [
     shortDescription: 'Stay connected and productive with built-in communication tools.',
     description:
       'Communicate seamlessly with your team and clients through integrated messaging, video conferencing, and file sharing. Keep everyone aligned and informed in real time.',
-    technologyUsed: ['React', 'Socket.IO', 'Firebase', 'Tailwind CSS', 'Node.js'],
+    tags: ['React', 'Socket.IO', 'Firebase', 'Tailwind CSS', 'Node.js'],
     images: [
       'https://picsum.photos/id/243/300/200', 
       'https://picsum.photos/id/244/300/200', 

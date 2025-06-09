@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
-export default function ProductPageCard({ product }) {
+export default function ProductPageCard({ i, product }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -18,17 +18,17 @@ export default function ProductPageCard({ product }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row md:h-80">
+    <div className={`bg-white rounded-lg shadow-md overflow-hidden flex flex-col ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} md:h-80`}>
       {/* Image Section */}
       <div
-        className="relative md:w-1/2 w-full h-64 md:h-full bg-gray-800 flex items-center justify-center"
+        className="relative md:w-2/5 w-full h-64 md:h-full flex items-center justify-center"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <img
           src={product.images[currentImageIndex]}
           alt={product.title}
-          className="object-contain w-full h-full p-2"
+          className="object-cover w-full h-full p-2"
         />
 
         {/* Left Arrow */}
@@ -52,8 +52,8 @@ export default function ProductPageCard({ product }) {
         )}
 
         {/* Progress Bars */}
-        <div className="absolute bottom-2 left-0 w-full flex justify-center space-x-2">
-          {product.images.map((_, index) => (
+        <div className="absolute bottom-4 left-0 w-full flex justify-center space-x-2">
+          {product?.images?.map((_, index) => (
             <div
               key={index}
               className={`h-1 rounded-full transition-all duration-300 ${
@@ -65,7 +65,7 @@ export default function ProductPageCard({ product }) {
       </div>
 
       {/* Details Section */}
-      <div className="md:w-1/2 w-full p-6 flex flex-col justify-center">
+      <div className="md:w-3/5 w-full p-6 flex flex-col justify-center">
         <h3 className="text-2xl font-semibold mb-2 text-slate-800">
           {product.title}
         </h3>
@@ -78,12 +78,12 @@ export default function ProductPageCard({ product }) {
 
         {/* Technologies Used */}
         <div className="flex flex-wrap gap-2">
-          {product.technologyUsed.map((tech, index) => (
+          {product?.tags?.map((tag, index) => (
             <span
               key={index}
               className="bg-indigo-100 text-indigo-700 text-xs font-medium px-2 py-1 rounded-full"
             >
-              {tech}
+              {tag}
             </span>
           ))}
         </div>

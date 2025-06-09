@@ -25,8 +25,8 @@ export default function ProductPage() {
           Our Products
         </h2>
         <div className="flex flex-col gap-8">
-          {productsData.map((product, index) => (
-            <ProductPageCard key={index} product={product} />
+          {productsData?.map((product, index) => (
+            <ProductPageCard key={index} i={index}  product={product} />
           ))}
         </div>
       </div>
