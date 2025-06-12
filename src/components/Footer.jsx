@@ -41,13 +41,9 @@ export default function Footer() {
                 <Link to={"#"} >Best CRM Software</Link>
                 <Link to={"#"} >Sustainability</Link>
                 <Link to={"#"} >Security and Performance</Link>
-                <Link to={"#"} >Legal</Link>
-                <Link to={"#"} >Give us your Feedback</Link>
             </div>
             <div className='flex flex-col gap-2 md:gap-4 text-sky-700 w-full text-center'>
                 <div className='font-semibold text-blue-950 md:mb-5'>About Salesforce</div>
-                <Link to={"#"} >Our Story</Link>
-                <Link to={"#"} >Careers</Link>
                 <Link to={"#"} >Press</Link>
                 <Link to={"#"} >Blog</Link>
                 <Link to={"#"} >Security and Performance</Link>

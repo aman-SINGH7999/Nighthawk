@@ -13,6 +13,9 @@ import Services from './pages/Services';
 import ScrollToTop from './components/ScrollToTop';
 import TechnologyPage from './pages/TechnologyPage';
 import Products from './pages/Products';
+import About from './pages/About';
+import ContactPage from './pages/Contact';
+import OpenSource from './pages/OpenSource';
 
 
 
@@ -24,12 +27,12 @@ function App() {
     <ScrollToTop />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/about' element={<Home />} />
         <Route path='/products' element={<Products />} />
         <Route path='/services' element={<Services />} />
         <Route path='/technologies' element={<TechnologyPage />} />
-        <Route path='/open-source' element={<Home />} />
-        <Route path='/customers' element={<Home />} />
+        <Route path='/open-source' element={<OpenSource />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<ContactPage />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/blog/:id' element={<SingleBlog />} />
         <Route path='/careers' element={<Careers />} />
