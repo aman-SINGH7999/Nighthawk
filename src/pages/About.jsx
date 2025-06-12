@@ -12,7 +12,7 @@ export default function About() {
     <Navbar />
     <div>
         <HeroSection
-            title="ConnectSphere: Your All-in-One Business Platform"
+            title="ConnectSphere: Your All in One Business Platform"
             description="Streamline your operations, enhance collaboration, and drive growth with our comprehensive suite of tools."
             imgUrl="/product.jpeg"
             bgColor="bg-gradient-to-r from-sky-800 via-blue-800 to-transparent"
